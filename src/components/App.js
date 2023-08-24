@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import RecipeList from './RecipeList';
 import RecipeEdit from './RecipeEdit';
+import SearchBar from './SearchBar';
 import '../css/app.css'
 import { v4 as uuidv4 } from 'uuid';
 
@@ -21,7 +22,19 @@ function App() {
 
   const [selectedRecipeId, setSelectedRecipeId] = useState();
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
-  
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const filteredRecipes = recipes.filter(recipe => {
+    for (let i=0; i<searchQuery.length; i++) {
+      if (searchQuery.toLowerCase()[i] !== recipe.name.toLowerCase()[i]) {
+        return false;
+      }
+    }
+    return true;
+    // recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
+});
+
+
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
@@ -32,15 +45,21 @@ function App() {
     handleRecipeAdd: handleRecipeAdd,
     handleRecipeDelete: handleRecipeDelete,
     handleRecipeSelect: handleRecipeSelect,
-    handleRecipeChange: handleRecipeChange
+    handleRecipeChange: handleRecipeChange,
+    handleSearchQuery: handleSearchQuery
   }
 
   return (
     <RecipeContext.Provider value = {recipeContextValue}>
-      <RecipeList recipes={recipes} />
+      <SearchBar recipes={recipes} />
+      <RecipeList filteredRecipes={filteredRecipes} />
       {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
     </RecipeContext.Provider>
   )  
+
+  function handleSearchQuery(search) {
+    setSearchQuery(search);
+  }
 
   function handleRecipeSelect(id) {
     setSelectedRecipeId(id);
