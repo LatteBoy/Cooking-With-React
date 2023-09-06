@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { RecipeContext } from './App';
 
-export default function SearchBar({ recipes }) {
+export default function SearchBar() {
     const { handleSearchQuery } = useContext(RecipeContext);
 
     return (

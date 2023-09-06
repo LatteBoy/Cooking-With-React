@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 export default function RecipeEdit({ recipe }) {
   const { handleRecipeChange, handleRecipeSelect } = useContext(RecipeContext);
 
+
   function handleChange(changes) {
     handleRecipeChange(recipe.id, { ...recipe, ...changes })
   }
@@ -49,6 +50,22 @@ export default function RecipeEdit({ recipe }) {
                 value={recipe.name}
                 onChange={e => handleChange({ name: e.target.value })}
             />
+            <label
+                htmlFor='category'
+                className='recipe-edit__label'>
+                Category
+            </label>
+            <select
+                name='category'
+                id='category'
+                className='recipe-edit__input'
+                value={recipe.category}
+                onChange={e => handleChange({ category: e.target.value })}
+            >
+                <option value='Appetizer'>Appetizer</option>
+                <option value='Entree'>Entree</option>
+                <option value='Dessert'>Dessert</option>
+            </select>
             <label
                 htmlFor='cookTime'
                 className='recipe-edit__label'>

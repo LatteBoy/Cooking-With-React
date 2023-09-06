@@ -20,6 +20,10 @@ function App() {
       else { return JSON.parse(recipeJSON) }
   })
 
+  /* WORK ON THIS TOMORROW (IMPLEMENT FILTER OPTION TO SHOW RECIPES BY CATEGORY) */
+  const [selectedCategories, setSelectedCategories] = useState();
+  
+
   const [selectedRecipeId, setSelectedRecipeId] = useState();
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
@@ -31,7 +35,6 @@ function App() {
       }
     }
     return true;
-    // recipe.name.toLowerCase().includes(searchQuery.toLowerCase())
 });
 
 
@@ -51,7 +54,7 @@ function App() {
 
   return (
     <RecipeContext.Provider value = {recipeContextValue}>
-      <SearchBar recipes={recipes} />
+      <SearchBar />
       <RecipeList filteredRecipes={filteredRecipes} />
       {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
     </RecipeContext.Provider>
@@ -67,6 +70,7 @@ function App() {
 
   function handleRecipeAdd() {
     const newRecipe = {
+      category: '',
       id: uuidv4(),
       name: '',
       servings: 1,
@@ -99,6 +103,7 @@ function App() {
 
 const sampleRecipes = [
   {
+    category: 'Entree',
     id: 1,
     name: 'Plain Chicken',
     servings: 3,
@@ -118,6 +123,7 @@ const sampleRecipes = [
     ]
   },
   {
+    category: 'Entree',
     id: 2,
     name: 'Plain Pork',
     servings: 5,
