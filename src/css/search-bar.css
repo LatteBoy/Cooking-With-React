@@ -1,19 +1,26 @@
-.search-bar {
-    display: flex;
+.search-bar-section {
+    display: block;
     justify-content: left;
     margin-top: 10px;
     border-bottom: 1px solid black;
-    height: 40px;
+    height: 80px;
 }
 
-.search-font {
+.search-bar-font {
     font-weight: bold;
     margin-right: 10px;
     margin-left: 10px;
 }
 
-.search-space {
+.search-bar-space {
     width: 35%;
     font-size: 20px;
     margin-bottom: 10px;
+    margin-left: 40px;
+}
+
+.search-category__label {
+    width: 10%;
+    height: 30px;
+    font-size: 20px;
 }

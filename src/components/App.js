@@ -20,19 +20,23 @@ function App() {
       else { return JSON.parse(recipeJSON) }
   })
 
-  /* WORK ON THIS TOMORROW (IMPLEMENT FILTER OPTION TO SHOW RECIPES BY CATEGORY) */
-  // const [selectedCategories, setSelectedCategories] = useState();
-  
-
+  // state to manage current selected recipe
   const [selectedRecipeId, setSelectedRecipeId] = useState();
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
+  // state to manage categorySelection
+  const [selectedCategories, setSelectedCategories] = useState('');
+  // state to manage searchQuery
   const [searchQuery, setSearchQuery] = useState('');
+
   const filteredRecipes = recipes.filter(recipe => {
     for (let i=0; i<searchQuery.length; i++) {
       if (searchQuery.toLowerCase()[i] !== recipe.name.toLowerCase()[i]) {
         return false;
       }
+    }
+    if (selectedCategories && selectedCategories !== recipe.category) {
+      return false;
     }
     return true;
 });
@@ -49,7 +53,8 @@ function App() {
     handleRecipeDelete: handleRecipeDelete,
     handleRecipeSelect: handleRecipeSelect,
     handleRecipeChange: handleRecipeChange,
-    handleSearchQuery: handleSearchQuery
+    handleSearchQuery: handleSearchQuery,
+    handleSetSelectedCategories: handleSetSelectedCategories
   }
 
   return (
@@ -59,6 +64,10 @@ function App() {
       {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
     </RecipeContext.Provider>
   )  
+
+  function handleSetSelectedCategories(category) {
+    setSelectedCategories(category);
+  }
 
   function handleSearchQuery(search) {
     setSearchQuery(search);
