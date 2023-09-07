@@ -21,7 +21,7 @@ function App() {
   })
 
   /* WORK ON THIS TOMORROW (IMPLEMENT FILTER OPTION TO SHOW RECIPES BY CATEGORY) */
-  const [selectedCategories, setSelectedCategories] = useState();
+  // const [selectedCategories, setSelectedCategories] = useState();
   
 
   const [selectedRecipeId, setSelectedRecipeId] = useState();
