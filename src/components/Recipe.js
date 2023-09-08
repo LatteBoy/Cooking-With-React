@@ -43,7 +43,8 @@ import React, { useContext } from "react";
 import IngredientList from "./IngredientList";
 import { RecipeContext } from "./App";
 
-import { Draggable } from 'react-beautiful-dnd';
+// import { Draggable } from 'react-beautiful-dnd';
+import { Draggable } from '@hello-pangea/dnd';
 
 export default function Recipe(props) {
   const { handleRecipeDelete, handleRecipeSelect } = useContext(RecipeContext);

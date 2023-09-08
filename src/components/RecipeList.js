@@ -24,7 +24,8 @@ import React, { useContext } from "react";
 import Recipe from "./Recipe";
 import { RecipeContext } from './App';
 
-import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+// import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from '@hello-pangea/dnd';
 
 export default function RecipeList({ filteredRecipes }) {
   const { handleRecipeAdd, updateRecipes } = useContext(RecipeContext);
@@ -36,8 +37,6 @@ export default function RecipeList({ filteredRecipes }) {
     const [reorderedItem] = reorderedRecipes.splice(result.source.index, 1);
     reorderedRecipes.splice(result.destination.index, 0, reorderedItem);
 
-    // Update your state with the reordered recipes
-    // Assuming you have such a function or you can create one
     updateRecipes(reorderedRecipes);
   }
 
