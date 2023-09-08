@@ -54,7 +54,8 @@ function App() {
     handleRecipeSelect: handleRecipeSelect,
     handleRecipeChange: handleRecipeChange,
     handleSearchQuery: handleSearchQuery,
-    handleSetSelectedCategories: handleSetSelectedCategories
+    handleSetSelectedCategories: handleSetSelectedCategories,
+    updateRecipes: updateRecipes
   }
 
   return (
@@ -64,6 +65,11 @@ function App() {
       {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
     </RecipeContext.Provider>
   )  
+
+  function updateRecipes(newRecipes) {
+    setRecipes(newRecipes);
+  }
+
 
   function handleSetSelectedCategories(category) {
     setSelectedCategories(category);
